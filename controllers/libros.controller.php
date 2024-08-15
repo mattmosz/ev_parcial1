@@ -1,7 +1,7 @@
 <?php
 
 require_once('../models/libros.model.php');
-//error_reporting(0);
+error_reporting(0);
 $libros = new LibrosModel();
 
 switch($_GET["op"]){
