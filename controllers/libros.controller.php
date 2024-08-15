@@ -1,7 +1,7 @@
 <?php
 
 require_once('../models/libros.model.php');
-error_reporting(0);
+//error_reporting(0);
 $libros = new LibrosModel();
 
 switch($_GET["op"]){
@@ -18,11 +18,15 @@ switch($_GET["op"]){
     
     case 'uno':
 
-        $libro_id = $_GET["libro_id"];
-        $datos = array();
-        $datos = $libros->uno($libro_id);
-        $res = mysqli_fetch_assoc($datos);
-        echo json_encode($res);
+        if (isset($_GET["libro_id"])) {
+            $libro_id = $_GET["libro_id"];
+            $datos = array();
+            $datos = $libros->uno($libro_id);
+            $res = mysqli_fetch_assoc($datos);
+            echo json_encode($res);
+        } else {
+            echo json_encode(array("error" => "libro_id no está definido"));
+        }
     break;
 
     case 'insertar':
